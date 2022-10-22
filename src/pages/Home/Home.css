@@ -1,0 +1,10 @@
+.banner{
+    height: 100vh;
+    background-image: url('../../asses/Rectangle\ 1.png');
+    background-repeat: no-repeat;   
+}
+.home-opacity{
+    height: 100vh;
+    background-color: black;
+    opacity: 0.4;
+}
