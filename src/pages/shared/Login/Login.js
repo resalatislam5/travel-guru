@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import facebook from '../../../asses/icons/fb.png'
 import google from '../../../asses/icons/google.png'
+import { AuthProviderContext } from '../../../contexts/AuthProvider/AuthProvider';
 const Login = () => {
+    const {} = useContext(AuthProviderContext)
     return (
         <div>
             <div className='w-[550px] h-[440px] border border-[#ABABAB] py-5 px-8 mx-auto mt-[5%]'>
