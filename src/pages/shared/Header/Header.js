@@ -1,8 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../asses/logo.png'
 import logoHome from '../../../asses/logo-home.png'
+import { useContext } from 'react';
+import { AuthProviderContext } from '../../../contexts/AuthProvider/AuthProvider';
 const Header = ({headerId}) => {
     const location = useLocation();
+    const {user,LogOut} = useContext(AuthProviderContext)
+    const handleLogOut = () =>{
+        LogOut()
+        .then(() =>{
+
+        })
+        .catch((error) => {
+            
+          });
+    }
     const currentPath = location.pathname;
     return (
         <div className=''>
@@ -23,8 +35,15 @@ const Header = ({headerId}) => {
                 </li>
                 <li><Link to='/blog'>Blog</Link></li>
                 <li><Link to='/contact'>Contact</Link></li>
-                <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/login'>Login</Link></li>
-                <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/signup'>Sign Up</Link></li>
+                {
+                    user && user.uid ?
+                    <li><button onClick={handleLogOut} className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10'>Sign out</button></li>
+                    :
+                    <>
+                    <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/login'>Login</Link></li>
+                    <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/signup'>Sign Up</Link></li>
+                    </>
+                }
                 </ul>
             </div>
             </div>
@@ -51,8 +70,15 @@ const Header = ({headerId}) => {
                 </li>
                 <li><Link to='/blog'>Blog</Link></li>
                 <li><Link to='/contact'>Contact</Link></li>
-                <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/login'>Login</Link></li>
-                <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/signup'>Sign Up</Link></li>
+                {
+                    user && user.uid ?
+                    <li><button onClick={handleLogOut} className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10'>Sign out</button></li>
+                    :
+                    <>
+                    <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/login'>Login</Link></li>
+                    <li><Link className='btn bg-[#F9A51A] hover:bg-[#eb9812] border-0 text-white px-10' to='/signup'>Sign Up</Link></li>
+                    </>
+                }
                 </ul>
             </div>
             </div>
