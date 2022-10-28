@@ -1,10 +1,22 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import facebook from '../../../asses/icons/fb.png'
 import google from '../../../asses/icons/google.png'
 import { AuthProviderContext } from '../../../contexts/AuthProvider/AuthProvider';
 const Login = () => {
-    const {} = useContext(AuthProviderContext)
+    const googleProvider = new GoogleAuthProvider()
+    const {signInPopup} = useContext(AuthProviderContext)
+    const handleGoogleSignIn = () =>{
+        signInPopup(googleProvider)
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(err =>{
+            const error = err.message
+            console.error(err)
+        })
+    }
     return (
         <div>
             <div className='w-[550px] h-[440px] border border-[#ABABAB] py-5 px-8 mx-auto mt-[5%]'>
@@ -26,7 +38,7 @@ const Login = () => {
                 <div className='w-[550px] mx-auto'>
                 <p className='text-center text-xl my-8 before:underline'>or</p>
                     <button className='btn mb-3 bg-white hover:bg-gray-300 text-black  w-96 mx-[14%] rounded-3xl border-[#C7C7C7] flex relative'><span className='absolute left-0.5'><img className='w-10 h-10' src={facebook} alt="" /></span> Continue with Facebook</button>
-                    <button className='btn  mb-3 bg-white hover:bg-gray-300 text-black  w-96 mx-[14%] rounded-3xl border-[#C7C7C7] flex relative'><span className='absolute left-0.5'><img className='w-10 h-10' src={google} alt="" /></span> Continue with Google</button>
+                    <button onClick={handleGoogleSignIn} className='btn  mb-3 bg-white hover:bg-gray-300 text-black  w-96 mx-[14%] rounded-3xl border-[#C7C7C7] flex relative'><span className='absolute left-0.5'><img className='w-10 h-10' src={google} alt="" /></span> Continue with Google</button>
                 </div>
         </div>
     );

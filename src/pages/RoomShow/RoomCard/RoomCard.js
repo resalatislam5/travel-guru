@@ -2,7 +2,6 @@ import React from 'react';
 import star from '../../../asses/icons/star_1_.png'
 const RoomCard = ({room}) => {
     const {img,name,guests,bedrooms,beds,baths,ratting,price,des} = room;
-    console.log(room)
     return (
             <div className="card card-side bg-base-100  mb-6 mx-7 flex-grow-0">
                 <figure><img src={img} alt="room"/></figure>
